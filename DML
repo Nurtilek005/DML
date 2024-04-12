@@ -1,0 +1,36 @@
+select cars.brand,cars.model,cars.price from cars;
+SELECT COUNT(*) FROM cars;
+--Отобразите все автомобили бренда Hyundai
+select * from cars where brand  like 'Hyundai';
+-- Отобразите все красные и синие автомобили
+select * from cars where color in ('Red','Blue');
+-- Отобразите все автомобили, выпущенные с 2000 по 2010 год
+select * from cars where year_of_issue between 2000 and 2010;
+-- Отобразите количество автомобилей марки  Chevrolet
+select count(*) from cars where model like 'Chevrolet';
+-- Отобразите средне-статистический год выпуска всех машин
+select avg(cars.year_of_issue) from cars;
+-- Отобразите все автомобили  брендов  Audi, Toyota, Kia и Ford
+select * from cars where brand in ('Audi','Toyota','Kia','Ford');
+-- Отобразите автомобили, где модель автомобиля начинается с «Т»
+select * from cars where model like  'T%';
+-- Отобразите автомобили, где модель автомобиля заканчивается на «е»;
+select *from cars where model like '%e';
+-- Отобразите бренды, содержащие только 5 символов
+select * from cars where brand ilike '_____';
+-- Отобразите общую сумму всех автомобилей марки Mercedes-Benz
+select sum(price) from cars where cars.brand like 'Mercedes-Benz';
+-- Отобразите самую дорогую  и самую дешевую машину
+select max(cars.price) from cars ;
+select min(cars.price) from cars ;
+-- Отобразите все автомобили кроме марки  TOYOTA
+select * from cars where brand not in ('TOYOTA');
+-- Отобразите 10 самых дорогих автомобилей
+select * from cars order by price desc limit 10;
+-- Отобразите 10 новейших машин с 5-го по 15-е
+select * from cars order by year_of_issue desc offset 4 limit 10;
+-- Отобразите все автомобили, кроме тех,  которые выпустились между 1995 и 2005;
+select * from cars where year_of_issue not between 1995 and 2005;
+-- Вывести  автомобилей  одного цвета  и наибольшего количества
+select* from cars where color =(select color
+                            from cars order by color desc limit 1);
